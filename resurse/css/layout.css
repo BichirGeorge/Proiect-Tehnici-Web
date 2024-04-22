@@ -1,0 +1,76 @@
+body{
+  --culoare5:#61892F;
+  --culoare4:#86C232;
+  --culoare3:#222629;
+  --culoare2:#474B4F;
+  --culoare1:#6B6E70;
+}
+
+html{
+    font-size: 18px;
+}
+#grid-pagina {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 
+    "zona1 zona1 zona1 zona1"
+    "zona2 zona2 Masini-in-stoc Contact"
+    "zona3 zona6 Vinde-ti-masina Finantare"
+    "zona5 zona6 Vinde-ti-masina Finantare"
+    "zona5 zona4 zona4 zona7";
+  }
+  
+  #grid-pagina > * {
+    border: 2px solid var(--culoare5);
+    padding: 1em;
+    border-radius: 20px;
+  }
+  
+  #grid-pagina > figure { 
+    margin: 0;
+  }
+  
+img {
+    width: 50%;
+}
+
+  #Acasa { grid-area: zona1; }
+  #Tabel { grid-area: zona2; }
+  #Calendar { grid-area: zona3; }
+  #Anunturi { grid-area: zona4; }
+  #Utilizatori { grid-area: zona5; }
+  #Statistici { grid-area: zona6; }
+  #Site { grid-area: zona7; }
+  #Masini-in-stoc { grid-area: Masini-in-stoc; }
+  #Contact { grid-area: Contact; }
+  #Finantare { grid-area: Finantare; }
+  #Vinde-ti-masina { grid-area: Vinde-ti-masina; }
+  @media screen and (max-width: 1200px) {
+    html {
+      font-size: 15px;
+    }
+    #grid-pagina {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 
+      "zona1 zona2"
+      "zona3 zona4"
+      "zona5 zona6"
+      "zona7 zona6"
+      "Contact Finantare"
+      "Vinde-ti-masina Masini-in-stoc";
+    }    
+  }
+  
+  @media screen and (max-width: 800px) {
+    html {
+      font-size: 12px;
+    }
+    #grid-pagina {
+      display: block;
+    }
+    * {
+        transition: none;
+    }
+  }
+

@@ -1,0 +1,83 @@
+{
+	"cale_galerie": "resurse/imagini/galerie",
+	"imagini": [
+		{
+			"fisier": "Alfa.png",
+			"nume": "Alfa Romeo Spider 1975",
+			"descriere": "O masina de epoca",
+			"timp": "zi"
+		},
+		{
+			"fisier": "AmgGri.png",
+			"nume": "Mercedes AMG Coupe",
+			"descriere": "Masina sport",
+			"timp": "zi"
+		},
+		{
+			"fisier": "AudiR8.png",
+			"nume": "Audi R8",
+			"descriere": "Masina sport",
+			"timp": "zi"
+		},
+		{
+			"fisier": "Beetle.png",
+			"nume": "Beetle",
+			"descriere": "Masina clasica",
+			"timp": "zi"
+		},
+		{
+			"fisier": "BentleyContinentalGT.png",
+			"nume": "Bentley Continental GT",
+			"descriere": "Masina de epoca",
+			"timp": "zi"
+		},
+		{
+			"fisier": "FerrariAlbastru.png",
+			"nume": "Ferrari F430",
+			"descriere": "Masina sport",
+			"timp": "zi"
+		},
+		{
+			"fisier": "FerrariRosu.png",
+			"nume": "Ferrari F458",
+			"descriere": "Masina sport",
+			"timp": "zi"
+		},
+		{
+			"fisier": "MasiniVeche.png",
+			"nume": "Ford Crestline 1951",
+			"descriere": "Masina de epoca",
+			"timp": "zi"
+		},
+		{
+			"fisier": "Porsche911.png",
+			"nume": "Porsche 911",
+			"descriere": "Masina sport",
+			"timp": "zi"
+		},
+		{
+			"fisier": "BugattiChiron.png",
+			"nume": "Bugatti Chiron",
+			"descriere": "Masina sport",
+			"timp": "dimineata"
+		},
+		{
+			"fisier": "BentleyVechi.png",
+			"nume": "Bentley ...",
+			"descriere": "Masina de epoca",
+			"timp": "noapte"
+		},
+		{
+			"fisier": "JaguarXE.png",
+			"nume": "Jaguar XE",
+			"descriere": "Masina premium",
+			"timp": "dimineata"
+		},
+		{
+			"fisier": "KoenigseggAgera.png",
+			"nume": "Koenigsegg Agera",
+			"descriere": "Masina sport",
+			"timp": "noapte"
+		}
+	]
+}

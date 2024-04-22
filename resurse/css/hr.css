@@ -1,0 +1,23 @@
+hr{
+    height: 5px;
+    background: var(--culoare4);
+    border-color: transparent;
+    opacity: 1;
+}
+
+hr:before {
+    color: var(--culoare4);
+    content: "►";
+    position: absolute;
+    font-size: 2em;
+    left: 3%;
+    transform: translateY(-17px);
+}
+hr:after {
+    color: var(--culoare4);
+    content: "◄";
+    position: absolute;
+    font-size: 2em;
+    right: 3%;
+    transform: translateY(-17px);
+}

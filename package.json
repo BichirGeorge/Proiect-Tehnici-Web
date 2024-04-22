@@ -1,0 +1,19 @@
+{
+  "name": "proiect-tehnici-web",
+  "version": "1.0.0",
+  "description": "AutoHaHaHa ofera masini la cel mai mic pret. Fiecare masina este verificata.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bichir George-Ionut",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "sass": "^1.74.1",
+    "sharp": "^0.33.3"
+  }
+}

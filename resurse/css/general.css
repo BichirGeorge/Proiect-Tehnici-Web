@@ -1,0 +1,141 @@
+body{
+  --culoare5:#61892F;
+  --culoare4:#86C232;
+  --culoare3:#222629;
+  --culoare2:#474B4F;
+  --culoare1:#6B6E70;
+}
+
+#link-top{
+    display: block;
+    position:fixed;
+    bottom:0.3em;
+    opacity:0.5;
+    left:0.3em;
+    width:4rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border: 7px solid grey;
+    border-radius: 45%;
+    border-top: none;
+    border-bottom: none;
+  }
+  
+
+  #link-top:hover{
+    opacity:1;
+  }
+  #triunghi{
+    height:0px;
+    width:0;
+    display:inline-block;
+    border-bottom:0.75rem solid grey;
+    border-left:0.75rem solid transparent;
+    border-right:0.75rem solid transparent;
+    vertical-align: top;
+    transform: translateY(150%);
+    /* transition: transform 0.5s linear, border-bottom 0.5s linear; */
+    transition: all 0.7s;
+  }
+
+
+  #link-top:hover > #triunghi{
+    transform:    translateY(100%);
+    border-bottom: 0.75rem solid rgb(255, 0, 0);
+  }
+  
+  .container-iframe{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .container-iframe iframe{
+    border: 10px inset var(--culoare4);
+    box-sizing: border-box  ;
+  }
+  
+  .taburi-iframe{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+
+  .taburi-iframe > a{
+    display : block;
+    border: 3px solid var(--culoare4);
+    background-color: var(--culoare5);
+    margin-bottom: 0.4em;
+    padding: 0.6em;
+    width: 20%;
+    text-decoration: none;
+    height: 2em;
+    line-height: 2em;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    box-shadow:
+    inset 0 0 0 3px var(--culoare2),
+    inset 0px 5px 25px 5px var(--culoare4);
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+    box-sizing: content-box;
+  }
+
+  .taburi-iframe > a:hover {
+    box-shadow:
+    inset 0 0 0 3px var(--culoare2);
+    transition:all 2s;
+}
+
+    #tab-orar{
+      border-spacing: 0px;
+      border-collapse: collapse;
+    }
+
+    #tab-orar th, #tab-orar td{
+      border:3px solid black;
+      
+    }
+    #tab-orar th:nth-child(2n+1){
+      background-color: red;
+    }
+
+    #tab-orar {
+        border: 1px solid black;
+        border-collapse: collapse; 
+        
+      }
+
+    #tab-orar tr:hover {
+        background-color: #f9f9f9;
+        color: blue; 
+    }
+
+    #tab-orar tr:hover td {
+        border: 5px solid black;
+        transition: all 0.75s;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%; /* Face ca tabelul sa ocupe toata latimea containerului */
+    }
+
+    @media screen and (max-width: 1200px) {
+      #tab-orar{
+        width: 200%;
+      }
+      #container-tab-orar{
+        overflow: scroll;
+      }
+    }
+    
+    @media screen and (max-width: 800px) {
+      #tab-orar{
+        width: 200%;
+      }
+      #container-tab-orar{
+        overflow: scroll;
+      }
+    }
