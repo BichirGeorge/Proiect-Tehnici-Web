@@ -45,6 +45,13 @@ app.set("view engine", "ejs");
 app.use("/resurse", express.static(__dirname + "/resurse"));
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
+app.use(function (req, res, next) {
+    client.query("select * from unnest(enum_range(null::categ_prajitura))", function (err, rezOpituni) {
+        res.locals.optiuniMeniu = rezOpituni.rows;
+        next();
+    })
+})
+
 //8
 app.get(["/", "/index", "/home"], function (req, res) {
     res.render("pagini/index.ejs", {
@@ -52,21 +59,21 @@ app.get(["/", "/index", "/home"], function (req, res) {
     });
 })
 
-app.get("/produse", function (req, res) {
+app.get("/produse", function(req, res){
     console.log(req.query)
-    var conditieQuery = "";
-    if (req.query.tip) {
-        conditieQuery = ` where tip_produs='${req.query.tip}'`
+    var conditieQuery="";
+    if (req.query.tip){
+        conditieQuery=` where tip_produs='${req.query.tip}'`
     }
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function (err, rezOptiuni) {
+    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
 
-        client.query(`select * from prajituri ${conditieQuery}`, function (err, rez) {
-            if (err) {
+        client.query(`select * from prajituri ${conditieQuery}`, function(err, rez){
+            if (err){
                 console.log(err);
                 afisareEroare(res, 2);
             }
-            else {
-                res.render("pagini/produse", { produse: rez.rows, optiuni: [] })
+            else{
+                res.render("pagini/produse", {produse: rez.rows, optiuni:rezOptiuni.rows})
             }
         })
     });
