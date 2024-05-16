@@ -1,9 +1,16 @@
 <header class="c1" id="h1">
   <div id="header">
     <h1>AutoHaHaHa</h1>
-    <button id="schimba_tema">
-      <i id="tema-icon" class="fa-solid fa-sun"></i> Schimba tema
-    </button>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="temaSwitch">
+      <label class="form-check-label" for="temaSwitch">
+        <i class="bi bi-moon d-none"></i>
+        <i class="bi bi-sun"></i>
+        <span id="temaText">Light Mode</span>
+      </label>
+    </div>
+    
+    
     <script src="/resurse/js/tema.js"></script>
     <nav>
       <label id="hamburger" for="ch-menu">

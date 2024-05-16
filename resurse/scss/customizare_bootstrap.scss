@@ -1,9 +1,9 @@
+$font-size-html: 4rem;
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
 (
     $primary: #86C232,
     $secondary:#474B4F,
     $btn-color:#61892F,
-    
     $grid-breakpoints: (
         xs: 0,
         sm: 480px,
@@ -23,7 +23,10 @@
       $success: green,
       $info: yellow,
       $warning: orange,
-      $danger: red
+      $danger: red,
+      $form-range-thumb-width: 2rem,
+      $form-range-thumb-bg: #61892F,
+      $form-range-track-bg: #00ff00
 );
 
 a {
@@ -33,3 +36,5 @@ a {
 a:visited, a:active {
     color: #222629;
 }
+
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
