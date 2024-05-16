@@ -1,23 +1,29 @@
-hr{
+#Acasa {
+    grid-area: zona1;
+    position: relative;
+}
+
+#Acasa hr {
     height: 5px;
     background: var(--culoare4);
     border-color: transparent;
     opacity: 1;
 }
 
-hr:before {
+#Acasa hr:before {
     color: var(--culoare4);
     content: "►";
     position: absolute;
     font-size: 2em;
-    left: 3%;
-    transform: translateY(-17px);
+    left: 0%;
+    transform: translateY(-47.5%);
 }
-hr:after {
+
+#Acasa hr:after {
     color: var(--culoare4);
     content: "◄";
     position: absolute;
     font-size: 2em;
-    right: 3%;
-    transform: translateY(-17px);
+    right: 0%;
+    transform: translateY(-47.5%);
 }

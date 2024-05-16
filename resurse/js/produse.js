@@ -1,4 +1,17 @@
 
+// window.addEventListener("load", function(){
+//     document.getElementById("filtrare").onchange=function(){
+//         var inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
+
+//         var produse = document.getElementsByClassName("produs");
+//         for(let produs of produse){
+//             let varNume=produs.getElementsByClassName("val-nume");
+//             console.log(valNume)
+//         }
+//     }
+// })
+
+
 window.addEventListener("load", function(){
 
     document.getElementById("inp-pret").onchange=function(){
@@ -9,26 +22,35 @@ window.addEventListener("load", function(){
     // document.getElementById("filtrare").addEventListener("click", function(){ })
     document.getElementById("filtrare").onclick= function(){
         var inpNume= document.getElementById("inp-nume").value.toLowerCase().trim();
-
-        var radioCalorii=document.getElementsByName("gr_rad")
-        let inpCalorii;
-        for (let rad of radioCalorii){
+        if (inpNume === "") {
+            alert("Va rugam sa introduceti un nume.");
+            return; // Oprire operație dacă inputul nu este valid
+        }
+        var radioKilometraj=document.getElementsByName("gr_rad")
+        let inpKilometraj;
+        var radioSelectat = false;
+        for (let rad of radioKilometraj){
             if (rad.checked){
-                inpCalorii=rad.value;
+                radioSelectat = true;
+                inpKilometraj=rad.value;
                 break;
             }
         }
-        let minCalorii, maxCalorii
-        if (inpCalorii!="toate"){
-            vCal=inpCalorii.split(":")
-            minCalorii=parseInt(vCal[0])
-            maxCalorii=parseInt(vCal[1])
+        if (!radioSelectat){
+            alert("Va rugam sa selectati un interval de kilometraj.");
+            return;
+        }
+        let minKilometraj, maxKilometraj
+        if (inpKilometraj!="toate"){
+            vKilo=inpKilometraj.split(":")
+            minKilometraj=parseInt(vKilo[0])
+            maxKilometraj=parseInt(vKilo[1])
         }
 
 
         var inpPret= parseInt(document.getElementById("inp-pret").value);
 
-        var inpCateg=document.getElementById("inp-categorie").value.toLowerCase().trim()
+        var inpFirma=document.getElementById("inp-firma").value.toLowerCase().trim()
 
 
         var produse=document.getElementsByClassName("produs");
@@ -39,16 +61,16 @@ window.addEventListener("load", function(){
             let cond1= valNume.startsWith(inpNume)
 
 
-            let valCalorii = parseInt(produs.getElementsByClassName("val-calorii")[0].innerHTML)
+            let valKilometraj = parseInt(produs.getElementsByClassName("val-kilometraj")[0].innerHTML)
 
-            let cond2=(inpCalorii=="toate" || (minCalorii<= valCalorii && valCalorii < maxCalorii));
+            let cond2=(inpKilometraj=="toate" || (minKilometraj<= valKilometraj && valKilometraj < maxKilometraj));
 
             let valPret = parseFloat(produs.getElementsByClassName("val-pret")[0].innerHTML)
             let cond3=(valPret>inpPret)
 
 
-            let valCategorie = produs.getElementsByClassName("val-categorie")[0].innerHTML.toLowerCase().trim()
-            let cond4 =(inpCateg==valCategorie || inpCateg=="toate")
+            let valFirma = produs.getElementsByClassName("val-firma")[0].innerHTML.toLowerCase().trim()
+            let cond4 =(inpFirma==valFirma || inpFirma=="toate")
 
             if (cond1 && cond2 && cond3 && cond4){
                 produs.style.display="block";
@@ -66,17 +88,19 @@ window.addEventListener("load", function(){
     }
 
     document.getElementById("resetare").onclick= function(){
-                
+        var confirmReset = window.confirm("Vrei cu adevarat sa resetezi filtrele?");
+        if (confirmReset){       
         document.getElementById("inp-nume").value="";
         
         document.getElementById("inp-pret").value=document.getElementById("inp-pret").min;
-        document.getElementById("inp-categorie").value="toate";
+        document.getElementById("inp-firma").value="toate";
         document.getElementById("i_rad4").checked=true;
         var produse=document.getElementsByClassName("produs");
         document.getElementById("infoRange").innerHTML="(0)";
         for (let prod of produse){
             prod.style.display="block";
         }
+    } 
     }
 
 
@@ -114,11 +138,16 @@ window.addEventListener("load", function(){
         if (e.key == "c" && e.altKey) {
             var suma = 0;
             var produse = document.getElementsByClassName("produs");
+    
             for (let produs of produse) {
                 var stil = getComputedStyle(produs)
                 if (stil.display != "none") {
                     suma += parseFloat(produs.getElementsByClassName("val-pret")[0].innerHTML)
                 }
+            }
+            if (suma === 0) {
+                alert("Nu avem ce sa calculam.");
+                return;
             }
             //console.log(suma);
             if (!document.getElementById("par_suma")) {

@@ -1,19 +1,27 @@
-if (localStorage.getItem("tema")) {
-    document.body.classList.add("dark");
-}
-else {
-    document.body.classList.remove("dark");
-}
+window.addEventListener("DOMContentLoaded", function(){
+    let tema = localStorage.getItem("tema");
+    let body = document.body;
+    let temaIcon = document.getElementById("tema-icon");
 
-window.addEventListener("DOMConentLoaded", function () {
-    document.getElementById("schimba_tema").onclick = function () {
-        if (document.body.classList.contains("dark")) {
-            document.body.classList.remove("dark");
+    if (tema === "dark") {
+        body.classList.add("dark");
+        temaIcon.classList.add("fa-moon");
+    } else {
+        body.classList.remove("dark");
+        temaIcon.classList.add("fa-sun");
+    }
+
+    document.getElementById("schimba_tema").onclick = function(){
+        if(body.classList.contains("dark")){
+            body.classList.remove("dark");
+            temaIcon.classList.remove("fa-moon");
+            temaIcon.classList.add("fa-sun");
             localStorage.removeItem("tema");
         } else {
-            document.body.classList.add("dark");
+            body.classList.add("dark");
+            temaIcon.classList.remove("fa-sun");
+            temaIcon.classList.add("fa-moon");
             localStorage.setItem("tema", "dark");
         }
     }
-
-})
+});

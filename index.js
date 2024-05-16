@@ -15,7 +15,7 @@ var client = new Client({
 });
 client.connect();
 
-client.query("select * from unnest(enum_range(null:categ_prajitura))", function (err, rez) {
+client.query("select * from unnest(enum_range(null:firme_masini))", function (err, rez) {
     console.log(rez) //Modific categ_prajitura
 })
 
@@ -46,7 +46,7 @@ app.use("/resurse", express.static(__dirname + "/resurse"));
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
 app.use(function (req, res, next) {
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function (err, rezOpituni) {
+    client.query("select * from unnest(enum_range(null::tipuri_masini))", function (err, rezOpituni) {
         res.locals.optiuniMeniu = rezOpituni.rows;
         next();
     })
@@ -59,15 +59,17 @@ app.get(["/", "/index", "/home"], function (req, res) {
     });
 })
 
+//------------------Produse-----------------------------
+
 app.get("/produse", function(req, res){
     console.log(req.query)
     var conditieQuery="";
     if (req.query.tip){
-        conditieQuery=` where tip_produs='${req.query.tip}'`
+        conditieQuery=` where tip='${req.query.tip}'`;
     }
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
+    client.query("select * from unnest(enum_range(null::firme_masini))", function(err, rezOptiuni){
 
-        client.query(`select * from prajituri ${conditieQuery}`, function(err, rez){
+        client.query(`select * from masini ${conditieQuery}`, function(err, rez){
             if (err){
                 console.log(err);
                 afisareEroare(res, 2);
@@ -80,7 +82,7 @@ app.get("/produse", function(req, res){
 })
 
 app.get("/produs/:id", function (req, res) {
-    client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez) {
+    client.query(`select * from masini where id=${req.params.id}`, function (err, rez) {
         if (err) {
             console.log(err);
             afisareEroare(res, 2);
