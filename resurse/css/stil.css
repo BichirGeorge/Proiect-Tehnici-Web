@@ -61,13 +61,13 @@ h2{
     position: relative;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
   html {
     transition: font-family 0s; 
   } 
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
   html {
     transition: font-family 0s;  
   } 
@@ -97,16 +97,16 @@ h1{
   border: none;
   width: auto;
   height: auto;
-  text-align: center; 
+  text-align: left; 
   padding: 0; 
   margin: 0; 
-  display: initial;
 }
-.meniu li a {
-  display: inline; 
-  text-decoration: none; 
-  color: black; 
+
+.meniu {
+  display: block;
+  position: absolute;
 }
+
 #grid-pagina{
   font-size: 10px;
   box-sizing:border-box;
@@ -145,7 +145,7 @@ h1{
     white-space: pre;
   }
   /* toate linkurile din pagină se vor afișa ca text normal (nu colorate sau subliniate) */
-  a {
+  footer a {
     text-decoration: none;
     color: inherit;
   }
@@ -165,11 +165,22 @@ h1{
     page-break-before: always;
   }
 #banner{
-  position: inherit;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      text-align: center;
+      padding: 10px;
+
+      border: 4px inset black;
+      box-sizing: border-box;
 }
-#end{
-  page-break-before: always;
+footer a[href^="http"] {
+  text-decoration: none;
+  color: black;
 }
+
 }
 
 @page:right{
@@ -195,9 +206,9 @@ footer a[href^="http"]::before {
   font-size: 150%;
   margin-right: 5px;
 }
-footer a[href^="http"]:hover:before {
+/* footer a[href^="http"]:hover:before {
   color: var(red);
-}
+} */
 
 main a {
   position: relative;
