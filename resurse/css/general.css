@@ -7,17 +7,27 @@ body{
 }
 
 body.dark{
-  --culoare-mov:rgb(31, 31, 31);
---culoare-roz-inchis:rgb(64,27,66);
---culoare-roz-inchis-t:rgb(64,27,66,0.5);
-  --cl-marcare:rgb(81,43,81,0.5);
-  --cl-light-t:rgba(255,255,255,0.2);
-  --cl-text:white;
-  text-shadow:0px 0px 2px black,0px 0px 1px black,0px 0px 1px black;
-  --imag-body-backgr:url("../imagini/background-bomboane-dark.jpg");
-  --gradient-body:linear-gradient(transparent, transparent 25%, rgba(255,255,255,0.5) 50%, transparent 75%, transparent);
-}
+  --culoare5:#366300;
+  --culoare4:#5c8522;
+  --culoare3:#0e0f11;
+  --culoare2:#2a2c2e;
+  --culoare1:#4f5254;
 
+  /* text-shadow:0px 0px 2px black,0px 0px 1px black,0px 0px 1px black; */
+  /* --imag-body-backgr:url("../imagini/background-bomboane-dark.jpg"); */
+  /* --gradient-body:linear-gradient(transparent, transparent 25%, rgba(255,255,255,0.5) 50%, transparent 75%, transparent); */
+  /* --culoare-mov:rgb(31, 31, 31);
+  --culoare-roz-inchis:rgb(64,27,66);
+  --culoare-roz-inchis-t:rgb(64,27,66,0.5);
+    --cl-marcare:rgb(81,43,81,0.5);
+    --cl-light-t:rgba(255,255,255,0.2);
+    --cl-text:white; */
+}
+.form-check.form-switch {
+  position: absolute;
+      top: 20px;
+      right: 60px;
+}
 
 
 #link-top{

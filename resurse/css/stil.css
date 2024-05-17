@@ -195,17 +195,38 @@ footer a[href^="http"]::before {
   font-size: 150%;
   margin-right: 5px;
 }
-
-/* Stilizare pentru linkurile din conținutul paginii */
-main a {
-  position: relative; /* Asigură poziționarea relativă pentru a plasa imaginea de fundal */
-  display: inline-block; /* Asigură ca link-urile să fie afișate ca blocuri pentru a putea fi dimensionate */
-  overflow: hidden; /* Ascunde orice conținut suplimentar care ar putea ieși în afara limitelor linkului */
+footer a[href^="http"]:hover:before {
+  color: var(red);
 }
 
+main a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+a[href^="http"]:hover:before {
+  color: var(--culoare1);
+}
 
+footer a {
+  background-image: radial-gradient(
+      ellipse at center,
+      var(--culoare3) 0%,
+      var(--culoare3) 40%,
+      transparent 80%,
+      transparent 100%
+  );
+  background-position: center;
+  background-size: 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s linear;
+}
+
+footer a:hover {
+  background-size: 100%;
+}
 footer a:active {
-  border: 2px solid var(--culoare1);
+  border: 1px solid var(--culoare3);
 }
 
 

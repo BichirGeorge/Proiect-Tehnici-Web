@@ -1,14 +1,20 @@
 WEBVTT - Lamborghini
 
 TITLU
-00:00:00.000 --> 00:12.000
+STYLE
+::cue {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #333333;
+}
+
+00:00:00.000 --> 00:12.000 text-align: center;
 Introducing Lamborghini
 
-00:00.000 --> 00:02.000
+00:00.000 --> 00:02.000 line:0
 Curves embody freedom.
 
-00:02.000 --> 00:06.000
+00:02.000 --> 00:06.000 line:0
 Lamborghini: the epitome of absolute speed.
 
-00:06.000 --> 00:12.000
+00:06.000 --> 00:12.000 line:0
 Elegance and power redefined by Lamborghini.
