@@ -1,78 +1,81 @@
 html {
   font-family: "Hind Vadodara", sans-serif;
-  transition: font-size 1s linear; 
-} 
-body{
-    background-color: var(--culoare2);
-    color: white;
-    --culoare5:#61892F;
-    --culoare4:#86C232;
-    --culoare3:#222629;
-    --culoare2:#474B4F;
-    --culoare1:#6B6E70;
-    --spatiere: 50px; 
-    padding-left: var(--spatiere);
-    padding-right: var(--spatiere);
-    
+  transition: font-size 1s linear;
+}
+
+body {
+  background-color: var(--culoare2);
+  color: white;
+  --culoare5: #61892F;
+  --culoare4: #86C232;
+  --culoare3: #222629;
+  --culoare2: #474B4F;
+  --culoare1: #6B6E70;
+  --spatiere: 50px;
+  padding-left: var(--spatiere);
+  padding-right: var(--spatiere);
+
 }
 
 p {
-    color: red;
-    border:2px solid var(--culoare1);
+  color: red;
+  border: 2px solid var(--culoare1);
 }
 
-h2{
-    background-color: var(--culoare1);
+h2 {
+  background-color: var(--culoare1);
 }
 
 #Formula h3 {
-    color: blue;
-  }
-  
-  #Formula math {
-    font-style: italic;
-    color: green;
-  }
-  
-  #Formula math mn {
-    color: red;
-  }
-  
-  #Formula math mo {
-    color: purple;
-  }
-  
-#header{
-    background-color: var(--culoare4);
-    border: 2px solid black;
-    border-radius: 10px;
-    /* box-shadow: 10px 10px 5px 5px black; */
-    margin-top: 10px;
+  color: blue;
 }
-#footer{
-    background-color: var(--culoare4);
-    border: 2px solid var(--culoare5);
-    border-left: 0cm;
-    border-right: 0cm;
-    border-radius: 10px;
-    /* box-shadow: 10px 10px 5px 5px var(--culoare5); */
-    margin-top: 10px;
-    padding: 10px;
-    position: relative;
+
+#Formula math {
+  font-style: italic;
+  color: green;
+}
+
+#Formula math mn {
+  color: red;
+}
+
+#Formula math mo {
+  color: purple;
+}
+
+#header {
+  background-color: var(--culoare4);
+  border: 2px solid black;
+  border-radius: 10px;
+  /* box-shadow: 10px 10px 5px 5px black; */
+  margin-top: 10px;
+}
+
+#footer {
+  background-color: var(--culoare4);
+  border: 2px solid var(--culoare5);
+  border-left: 0cm;
+  border-right: 0cm;
+  border-radius: 10px;
+  /* box-shadow: 10px 10px 5px 5px var(--culoare5); */
+  margin-top: 10px;
+  padding: 10px;
+  position: relative;
 }
 
 @media screen and (max-width: 1000px) {
   html {
-    transition: font-family 0s; 
-  } 
+    transition: font-family 0s;
+  }
 }
 
 @media screen and (max-width: 700px) {
   html {
-    transition: font-family 0s;  
-  } 
+    transition: font-family 0s;
+  }
 }
-#watermark{
+
+#watermark {
   display: none;
 }
 
@@ -86,49 +89,50 @@ header.c1 h1 {
 
 @media print {
 
-/* Headingul de nivel 1, cu titlu site-ului, va fi pe prima pagină, centrat pe orizontală*/
-h1{
-  margin-top: 50%;
-  text-align:center;
-}
-
-/* sub el se va afișa meniul sub formă de listă neordonată cu elementele unele sub altele (fără a afișa și subopțiunile) */
-.meniu li {
-  border: none;
-  width: auto;
-  height: auto;
-  text-align: left; 
-  padding: 0; 
-  margin: 0; 
-}
-
-.meniu {
-  display: block;
-  position: absolute;
-}
-
-#grid-pagina{
-  font-size: 10px;
-  box-sizing:border-box;
-  page-break-before:always;
-  background-color: white;
-  display:block;
+  /* Headingul de nivel 1, cu titlu site-ului, va fi pe prima pagină, centrat pe orizontală*/
+  h1 {
+    margin-top: 50%;
+    text-align: center;
   }
 
-#grid-pagina div:nth-child(5){
-  
-  page-break-before:always;
-}
-  #watermark
-  {
+  /* sub el se va afișa meniul sub formă de listă neordonată cu elementele unele sub altele (fără a afișa și subopțiunile) */
+  .meniu li {
+    border: none;
+    width: auto;
+    height: auto;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+  }
+
+  .meniu {
+    display: block;
+    position: absolute;
+  }
+
+  #grid-pagina {
+    font-size: 10px;
+    box-sizing: border-box;
+    page-break-before: always;
+    background-color: white;
+    display: block;
+  }
+
+  #grid-pagina div:nth-child(5) {
+
+    page-break-before: always;
+  }
+
+  #watermark {
     display: block;
     position: fixed;
-    bottom:0;
-    color:rgba(0,0,0,0.4);
-    right:0;
+    bottom: 0;
+    color: rgba(0, 0, 0, 0.4);
+    right: 0;
     border: none;
   }
-  #watermark::after{
+
+  #watermark::after {
     display: block;
     background: white;
     /* bottom: 1cm;
@@ -137,75 +141,88 @@ h1{
     height: 1cm;
     font-size: 13px;
     font-weight: bold;
-    text-align: center; 
+    text-align: center;
     border: 3px solid black;
     border-radius: 10px;
     opacity: 0.4;
-    content:"Bichir\AGeorge-Ionut";
+    content: "Bichir\AGeorge-Ionut";
     white-space: pre;
   }
+
   /* toate linkurile din pagină se vor afișa ca text normal (nu colorate sau subliniate) */
   footer a {
     text-decoration: none;
     color: inherit;
   }
-  img, video, iframe{
+
+  img,
+  video,
+  iframe {
     display: none;
   }
-  #link-top{
+
+  #link-top {
     display: none;
   }
-  .container-iframe{
+
+  .container-iframe {
     display: none;
   }
-  figcaption{
+
+  figcaption {
     display: none;
   }
+
   footer {
     page-break-before: always;
   }
-#banner{
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      text-align: center;
-      padding: 10px;
 
-      border: 4px inset black;
-      box-sizing: border-box;
-}
-footer a[href^="http"] {
-  text-decoration: none;
-  color: black;
-}
+  #banner {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    text-align: center;
+    padding: 10px;
 
-}
+    border: 4px inset black;
+    box-sizing: border-box;
+  }
 
-@page:right{
+  footer a[href^="http"] {
+    text-decoration: none;
+    color: black;
+  }
 
-  margin-right:3cm;
-  margin-left:1cm;
 }
 
-@page:left{
+@page: right {
 
-  margin-left:3cm;
-  margin-right:1cm;
+  margin-right: 3cm;
+  margin-left: 1cm;
+}
+
+@page: left {
+
+  margin-left: 3cm;
+  margin-right: 1cm;
 }
 
 footer a:visited {
   color: var(--culoare5);
 }
+
 footer a[href^="http"] {
-  position: relative; 
+  position: relative;
 }
+
 footer a[href^="http"]::before {
   content: "\2BB3";
   font-size: 150%;
   margin-right: 5px;
 }
+
 /* footer a[href^="http"]:hover:before {
   color: var(red);
 } */
@@ -215,18 +232,17 @@ main a {
   display: inline-block;
   overflow: hidden;
 }
+
 a[href^="http"]:hover:before {
   color: var(--culoare1);
 }
 
 footer a {
-  background-image: radial-gradient(
-      ellipse at center,
+  background-image: radial-gradient(ellipse at center,
       var(--culoare3) 0%,
       var(--culoare3) 40%,
       transparent 80%,
-      transparent 100%
-  );
+      transparent 100%);
   background-position: center;
   background-size: 0%;
   background-repeat: no-repeat;
@@ -236,8 +252,7 @@ footer a {
 footer a:hover {
   background-size: 100%;
 }
+
 footer a:active {
   border: 1px solid var(--culoare3);
 }
-
-
