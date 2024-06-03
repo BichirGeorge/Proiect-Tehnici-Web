@@ -15,6 +15,23 @@ class Utilizator{
     static numeDomeniu="localhost:8080";
     #eroare;
 
+    /**
+     * @typedef {object} ObiectUtilizator - un obiect ale carui proprietati au aceleasi nume cu cele ale instantelor clasei Utilizator
+     * @property {string []} campuri - o lista de stringuri cu numele coloanelor afectate de query; poate cuprinde si elementul "*"
+     * @property {string[]} conditiiAnd - lista de stringuri cu conditii pentru where
+     * @property {number} id - ID-ul utilizatorului
+     * @property {string} username - Username-ul utilizatorului
+     * @param {string} nume - Numele utilizatorului
+     * @param {string} prenume - Prenumele utilizatorului
+     * @param {string} email - email-ul utilizatorului
+     * @param {string} parola - Parola utilizatorului
+     * @param {string} rol - Rolul utilizatorului
+     * @param {string} culoare_chat - Culoarea chatului utilizatorului
+     * @param {string} poza - poza utilizatorului
+     * Creeaza o instanta a clasei Utilizator
+     * @param {ObiectUtilizator} obj - un obiect ale carui proprietati au aceleasi nume cu cele ale instantelor clasei Utilizator
+     */
+
     constructor({id, username, nume, prenume, email, parola, rol, culoare_chat="black", poza}={}) {
         this.id=id;
 
@@ -37,9 +54,20 @@ class Utilizator{
         this.#eroare="";
     }
 
+    /**
+     * Verifica daca numele este valid
+     * @param {string} nume - Numele de verificat
+     * @returns {boolean} True daca numele este valid, false in caz contrar
+     */
+
     checkName(nume){
         return nume!="" && nume.match(new RegExp("^[A-Z][a-z]+$")) ;
     }
+
+    /**
+     * Seteaza numele utilizatorului
+     * @param {string} nume - Numele de setat
+     */
 
     set setareNume(nume){
         if (this.checkName(nume)) this.nume=nume
@@ -51,6 +79,11 @@ class Utilizator{
     /*
     * folosit doar la inregistrare si modificare profil
     */
+    /**
+     * Seteaza username-ul utilizatorului
+     * @param {string} username - username-ul de setat
+     */
+
     set setareUsername(username){
         if (this.checkUsername(username)) this.username=username
         else{
@@ -58,13 +91,29 @@ class Utilizator{
         }
     }
 
+    /**
+     * Verifica daca username-ul este valid
+     * @param {string} username - Username-ul de verificat
+     * @returns {boolean} True daca username-ul este valid, false in caz contrar
+     */
+
     checkUsername(username){
         return username!="" && username.match(new RegExp("^[A-Za-z0-9#_./]+$")) ;
     }
 
+    /**
+     * Cripteaza parola utilizatorului
+     * @param {string} parola - Parola de criptat
+     * @returns {string} Parola criptata
+     */
+
     static criptareParola(parola){
         return crypto.scryptSync(parola,Utilizator.parolaCriptare,Utilizator.lungimeCod).toString("hex");
     }
+
+    /**
+     * salveaza utilizatorul in baza de date
+     */
 
     salvareUtilizator(){
         let parolaCriptata=Utilizator.criptareParola(this.parola);
@@ -91,6 +140,13 @@ class Utilizator{
     }
 //xjxwhotvuuturmqm
 
+    /**
+     * Trimite un email utilizatorului
+     * @param {string} subiect - Subiectul emailului
+     * @param {string} mesajText - Mesajul text al emailului
+     * @param {string} mesajHtml - Mesajul HTML al emailului
+     * @param {Array} [atasamente=[]] - Atasamentele emailului
+     */
 
     async trimiteMail(subiect, mesajText, mesajHtml, atasamente=[]){
         var transp= nodemailer.createTransport({
@@ -116,6 +172,12 @@ class Utilizator{
         console.log("trimis mail");
     }
    
+    /**
+     * Obtine un utilizator dupa username in mod asincron
+     * @param {string} username - Username-ul utilizatorului
+     * @returns {Promise<Utilizator|null>} Promisiune cu utilizatorul gasit sau null
+     */
+
     static async getUtilizDupaUsernameAsync(username){
         if (!username) return null;
         try{
@@ -138,6 +200,16 @@ class Utilizator{
         }
         
     }
+
+
+    /**
+     * Obtine un utilizator dupa username
+     * @param {string} username - Username-ul utilizatorului
+     * @param {Object} obparam - Parametri suplimentari
+     * @param {function} proceseazaUtiliz - Callback pentru procesarea utilizatorului
+     * @returns {Utilizator|null} Utilizatorul gasit sau null
+     */
+
     static getUtilizDupaUsername (username,obparam, proceseazaUtiliz){
         if (!username) return null;
         let eroare=null;

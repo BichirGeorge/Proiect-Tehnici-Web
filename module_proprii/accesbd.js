@@ -6,10 +6,16 @@ inca nu am implementat protectia contra SQL injection
 
 const { Client, Pool } = require("pg");
 
-
+/**
+ * Clasa Singleton pentru accesarea bazei de date
+ */
 class AccesBD {
     static #instanta = null;
     static #initializat = false;
+
+    /**
+     * Constructor care va arunca o eroare daca clasa a fost deja instantiata
+     */
 
     constructor() {
         if (AccesBD.#instanta) {
@@ -19,6 +25,11 @@ class AccesBD {
             throw new Error("Trebuie apelat doar din getInstanta; fara sa fi aruncat vreo eroare");
         }
     }
+
+    /**
+     * 
+     * Initializează conexiunea locală la baza de date.
+     */
 
     initLocal() {
         this.client = new Client({
@@ -35,6 +46,13 @@ class AccesBD {
         //         port:5432});
         this.client.connect();
     }
+
+    /**
+     * Returneaza clientul pentru baza de date
+     *
+     * @returns {Client} - clientul pentru baza de date
+     * @throws {Error} - daca clasa nu a fost instantiata
+     */
 
     getClient() {
         if (!AccesBD.#instanta) {
@@ -118,6 +136,11 @@ class AccesBD {
     }
 
 
+   /**
+     * Selecteaza asincron inregistrari din baza de date
+     *
+     * @param {ObiectQuerySelect} obj - un obiect cu datele pentru query
+     */
 
     async selectAsync({ tabel = "", campuri = [], conditiiAnd = [] } = {}) {
         let conditieWhere = "";
@@ -172,6 +195,28 @@ campuri={
     //     this.client.query(comanda,callback)
     // }
 
+/**
+ * @typedef {object} obiectQueryUpdate - Obiectul primit de funcțiile care realizează un query.
+ * @property {string} tabel - Numele tabelului.
+ * @property {string[]} campuri - Lista de stringuri cu numele coloanelor afectate de query; poate cuprinde și elementul "*".
+ * @property {string[]} conditiiAnd - Lista de stringuri cu condiții pentru clauza WHERE.
+ */
+
+/**
+ * Callback pentru query-uri.
+ * @callback QueryCallBack
+ * @param {Error} err - Eventuala eroare în urma query-ului.
+ * @param {Object} rez - Rezultatul query-ului.
+ */
+
+/**
+ * Actualizează înregistrările din baza de date.
+ *
+ * @param {obiectQueryUpdate} obj - Un obiect cu datele pentru query.
+ * @param {function} callback - O funcție callback cu 2 parametri: eroare și rezultatul query-ului.
+ */
+
+    
     update({ tabel = "", campuri = {}, conditiiAnd = [] } = {}, callback, parametriQuery) {
         let campuriActualizate = [];
         for (let prop in campuri)
@@ -183,6 +228,30 @@ campuri={
         console.log(comanda);
         this.client.query(comanda, callback)
     }
+
+/**
+ * @typedef {object} obiectQueryUpdateSeparat - Obiect primit de functiile care realizeaza un query cu valori separate.
+ * @property {string} tabel - Numele tabelului.
+ * @property {string[]} campuri - O lista de stringuri cu numele coloanelor afectate de query; poate cuprinde si elementul "*".
+ * @property {string[]} valori - O lista de stringuri cu valorile campurilor.
+ * @property {string[]} conditiiAnd - Lista de stringuri cu conditii pentru clauza WHERE.
+ */
+
+/**
+ * Callback pentru query-uri.
+ * @callback queryCallback
+ * @param {Error} err - Eventuala eroare in urma query-ului.
+ * @param {Object} rez - Rezultatul query-ului.
+ */
+
+/**
+ * Actualizeaza inregistrari din baza de date cu valori date separat.
+ *
+ * @param {obiectQueryUpdateSeparat} obj - Un obiect cu datele pentru query.
+ * @param {function} callback - O functie callback cu 2 parametri: eroare si rezultatul query-ului.
+ */
+
+
 
     updateParametrizat({ tabel = "", campuri = [], valori = [], conditiiAnd = [] } = {}, callback, parametriQuery) {
         if (campuri.length != valori.length)
@@ -211,6 +280,27 @@ campuri={
     //     this.client.query(comanda,valori, callback)
     // }
 
+/**
+ * @typedef {object} obiectQueryDelete - Obiect primit de functiile care realizeaza o operatiune de stergere.
+ * @property {string} tabel - Numele tabelului.
+ * @property {string[]} conditiiAnd - Lista de stringuri cu conditii pentru clauza WHERE.
+ */
+
+/**
+ * Callback pentru operatiunile de stergere.
+ * @callback queryCallbackDelete
+ * @param {Error} err - Eventuala eroare in urma operatiunii de stergere.
+ * @param {Object} rez - Rezultatul operatiunii de stergere.
+ */
+
+/**
+ * Sterge inregistrari din baza de date.
+ *
+ * @param {obiectQueryDelete} obj - Un obiect cu datele pentru operatiunea de stergere.
+ * @param {function} callback - O functie callback cu 2 parametri: eroare si rezultatul operatiunii de stergere.
+ */
+
+
     delete({ tabel = "", conditiiAnd = [] } = {}, callback) {
         let conditieWhere = "";
         if (conditiiAnd.length > 0)
@@ -220,6 +310,12 @@ campuri={
         console.log(comanda);
         this.client.query(comanda, callback)
     }
+/**
+ * Executa o comanda catre baza de date.
+ *
+ * @param {string} comanda - Comanda SQL de executat.
+ * @param {QueryCallback} callback - Functia de apel invers pentru gestionarea rezultatului executiei comenzii.
+ */
 
     query(comanda, callback) {
         this.client.query(comanda, callback);
