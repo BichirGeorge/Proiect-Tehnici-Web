@@ -14,6 +14,8 @@ const Drepturi = require("./module_proprii/drepturi.js");
 
 const QRCode = require('qrcode');
 const puppeteer = require('puppeteer');
+// const xmljs=require('xml-js');
+// const { MongoClient } = require("mongodb");
 
 const Client = require('pg').Client;
 
@@ -157,15 +159,43 @@ app.use(function (req, res, next) {
     })
 })
 
+//--------------------------------------locatie---------------------------------------
+async function obtineLocatie() {
+    try {
+        const response = await fetch('https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15');
+        const obiectLocatie = await response.json();
+        console.log(obiectLocatie);
+        locatie=obiectLocatie.geobytescountry+" "+obiectLocatie.geobytesregion
+        return locatie
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+function genereazaEvenimente(){
+    var evenimente=[]
+    var texteEvenimente=["Eveniment important", "Festivitate", "Prajituri gratis", "Zi cu soare", "Aniversare"];
+    var dataCurenta=new Date();
+    for(i=0;i<texteEvenimente.length;i++){
+        evenimente.push({
+            data: new Date(dataCurenta.getFullYear(), dataCurenta.getMonth(), Math.ceil(Math.random()*27) ), 
+            text:texteEvenimente[i]
+        });
+    }
+    return evenimente;
+}
+
 //8
 app.get(["/", "/index", "/home"], async function (req, res) {
 
 
     res.render("pagini/index.ejs", {
         ip: req.ip, 
-        imagini: obGlobal.obImagini.imagini,
-        useriOnline: await obtineUtilizatoriOnline()
-    });
+        imagini:obGlobal.obImagini.imagini, 
+        useriOnline:await obtineUtilizatoriOnline(),
+        locatie:await obtineLocatie(),
+        evenimente: genereazaEvenimente()
+    }); 
 })
 
 //------------------Produse-----------------------------
