@@ -5,6 +5,9 @@ const {RolFactory}=require('./roluri.js');
 const crypto=require("crypto");
 const nodemailer=require("nodemailer");
 
+/**
+ * Clasa pentru utilizatori
+ */
 
 class Utilizator{
     static tipConexiune="local";
