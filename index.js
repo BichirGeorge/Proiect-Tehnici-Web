@@ -14,8 +14,8 @@ const Drepturi = require("./module_proprii/drepturi.js");
 
 const QRCode = require('qrcode');
 const puppeteer = require('puppeteer');
-// const xmljs=require('xml-js');
-// const { MongoClient } = require("mongodb");
+const xmljs=require('xml-js');
+const { MongoClient } = require("mongodb");
 
 const Client = require('pg').Client;
 
@@ -33,15 +33,21 @@ client.query("select * from unnest(enum_range(null:firme_masini))", function (er
 })
 
 obGlobal = {
-    obErori: null,
-    obImagini: null,
+    obErori:null,
+    obImagini:null,
     folderCss: path.join(__dirname, "resurse/css"),
     folderScss: path.join(__dirname, "resurse/scss"),
     folderBackup: path.join(__dirname, "backup"),
     optiuniMeniu: [], // aici nush sigur daca trebuie o proprietate
     protocol: "http://",
     numeDomeniu: "localhost:8080", 
+    clientMongo:null,
+    bdMongo:null
 }
+
+const uri = "mongodb://localhost:27017";
+obGlobal.clientMongo = new MongoClient(uri);
+obGlobal.bdMongo = obGlobal.clientMongo.db('proiect_web');
 
 client.query("select * from unnest(enum_range(null::tipuri_produse))", function(err, rezCategorie){
     if (err){
@@ -355,6 +361,8 @@ app.post("/inregistrare", function (req, res) {
             utilizNou.parola = campuriText.parola[0];
             utilizNou.culoare_chat = campuriText.culoare_chat[0];
             utilizNou.poza = poza;
+            utilizNou.telefon = campuriText.telefon[0];
+            utilizNou.marca_preferata = campuriText.marca_preferata[0];
             Utilizator.getUtilizDupaUsername(campuriText.username[0], {}, function (u, parametru, eroareUser) {
                 if (eroareUser == -1) {//nu exista username-ul in BD
                     //TO DO salveaza utilizator
@@ -468,12 +476,14 @@ app.post("/profil", function (req, res) {
         AccesBD.getInstanta().updateParametrizat(
             {
                 tabel: "utilizatori",
-                campuri: ["nume", "prenume", "email", "culoare_chat"],
+                campuri: ["nume", "prenume", "email", "culoare_chat", "telefon", "marca_preferata"],
                 valori: [
                     `${campuriText.nume[0]}`,
                     `${campuriText.prenume[0]}`,
                     `${campuriText.email[0]}`,
-                    `${campuriText.culoare_chat[0]}`],
+                    `${campuriText.culoare_chat[0]}`,
+                    `${campuriText.telefon[0]}`,
+                    `${campuriText.marca_preferata[0]}`],
                 conditiiAnd: [
                     `parola = '${parolaCriptata}'`,
                     `username = '${campuriText.username[0]}'`
@@ -497,6 +507,8 @@ app.post("/profil", function (req, res) {
                     req.session.utilizator.prenume = campuriText.prenume[0];
                     req.session.utilizator.email = campuriText.email[0];
                     req.session.utilizator.culoare_chat = campuriText.culoare_chat[0];
+                    req.session.utilizator.telefon = campuriText.telefon[0];
+                    req.session.utilizator.marca_preferata = campuriText.marca_preferata[0];
                     res.locals.utilizator = req.session.utilizator;
                 }
 
@@ -598,6 +610,15 @@ app.get("/cod/:username/:token", function (req, res) {
         afisareEroare(res, 2);
     }
 })
+
+//termeni si conditii 
+app.get("/termeni_si_conditii", function (req, res) {
+    res.render("pagini/termeni_si_conditii");
+});
+//confidentialitate
+app.get("/confidentialitate", function (req, res) {
+    res.render("pagini/confidentialitate");
+});
 
 //transmiterea unui mesaj fix
 app.get("/cerere", function (req, res) {
@@ -725,6 +746,7 @@ function initImagini() {
     }
 }
 initImagini();
+
 
 function compileazaScss(caleScss, caleCss) {
     console.log("cale:", caleCss);

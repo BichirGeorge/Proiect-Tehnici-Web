@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS utilizatori (
    data_adaugare TIMESTAMP DEFAULT current_timestamp,
    cod character varying(200),
    confirmat_mail boolean DEFAULT false,
+   telefon VARCHAR(20),
+   marca_preferata VARCHAR(100),
    poza VARCHAR(200)
 );
 

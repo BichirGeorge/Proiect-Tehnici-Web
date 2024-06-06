@@ -24,7 +24,6 @@
           <%- include("../fragmente/formular-login.ejs") %>
           <%- locals.optiuniMeniu[1].unnest  %>
           <button type="button" class="btn btn-primary btn-lg">Stil-1-mare</button>
-          <%- include("../fragmente/useri-online.ejs") %>
           <div id="text">
             " Reflectăm stilul tău "
           <div id="text-reflectat">
@@ -215,12 +214,6 @@
         </section>
         <!-- ------------------------------------ -->
         <section id="Tabel">
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis
-            tenetur enim corrupti rem fugit quaerat placeat distinctio eius? At
-            ullam, adipisci debitis atque ab cumque expedita aperiam repellendus
-            numquam sed.
-          </p>
           <div id="container-tab-orar">
             <table id="tab-orar">
               <caption style="caption-side: bottom">
@@ -346,10 +339,7 @@
         </section>
         <section id="Statistici">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            quisquam quasi, cupiditate ea commodi tempore in eveniet ipsa sequi
-            minima minus sunt quae nostrum consectetur laborum dicta. Debitis,
-            quia neque!
+            <%- include("../fragmente/useri-online.ejs") %>
           </p>
         </section>
         <section id="Site">

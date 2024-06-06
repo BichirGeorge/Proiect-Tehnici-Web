@@ -35,7 +35,7 @@ class Utilizator{
      * @param {ObiectUtilizator} obj - un obiect ale carui proprietati au aceleasi nume cu cele ale instantelor clasei Utilizator
      */
 
-    constructor({id, username, nume, prenume, email, parola, rol, culoare_chat="black", poza}={}) {
+    constructor({id, username, nume, prenume, email, parola, rol, culoare_chat="black", telefon, marca_preferata, poza}={}) {
         this.id=id;
 
         //optional sa facem asta in constructor
@@ -131,7 +131,10 @@ class Utilizator{
                 email:this.email,
                 culoare_chat:this.culoare_chat,
                 cod:token,
-                poza:this.poza}
+                poza:this.poza,
+                telefon: this.telefon,
+                marca_preferata: this.marca_preferata
+            }
             }, function(err, rez){
             if(err)
                 console.log(err);
