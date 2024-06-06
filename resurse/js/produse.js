@@ -24,7 +24,7 @@ window.addEventListener("load", function(){
         var inpNume= document.getElementById("inp-nume").value.toLowerCase().trim();
         if (inpNume === "") {
             alert("Va rugam sa introduceti un nume.");
-            return; // Oprire operație dacă inputul nu este valid
+            return;
         }
         var radioKilometraj=document.getElementsByName("gr_rad")
         let inpKilometraj;
