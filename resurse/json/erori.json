@@ -9,16 +9,16 @@
         {
             "identificator":404,
             "status":true,
-            "titlu":"404 - N-am, bre!",
-            "text": "Nu-i pe serverul ăsta, sorry, caută în altă parte!",
-            "imagine":"lupa.png"
+            "titlu":"404 - Destinație necunoscută!",
+            "text": "Acest conținut nu poate fi găsit. Încearcă din nou mai târziu",
+            "imagine":"eroare404.png"
         },
         {
             "identificator":403,
             "status":true,
-            "titlu":"403 - Da, tu ce cauți aici?!!",
-            "text": "Ai greșit ruta. Stânga-împrejur și pa!",
-            "imagine":"interzis.png"
+            "titlu":"403 - Acces interzis!!!",
+            "text": "Stop! Ai ajuns într-o zonă interzisă. Întoarce-te înapoi!",
+            "imagine":"eroare403.jpg"
         },
         {
             "identificator":400,
@@ -33,7 +33,7 @@
             "status":false,
             "titlu":"Site în lucru",
             "text": "Muncim, muncim!",
-            "imagine":"interzis.png"
+            "imagine":"constructie.png"
         },
         
         {
@@ -41,7 +41,7 @@
             "status":false,
             "titlu":"Eroare baza date",
             "text": "Reveniti mai tarziu!",
-            "imagine":"interzis.png"
+            "imagine":"eroarebaza.png"
         },
         
         {
