@@ -292,7 +292,7 @@ summary:hover::before {
 }
 
 a {
-  color: var(--culoare3);
+  color: var(--culoare5);
 }
 
 li {
@@ -302,3 +302,4 @@ li {
 #Acasa, #Tabel, #Calendar, #Anunturi, #Utilizatori, #Statistici, #Site, #Masini-in-stoc, #Contact, #Finantare, #Vinde-ti-masina {
   background-color: var(--culoare3);
 }
+

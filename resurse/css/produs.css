@@ -1,3 +1,12 @@
+body{
+	--culoare6:#ffa500;
+	--culoare5:#61892F;
+	--culoare4:#86C232;
+	--culoare3:#222629;
+	--culoare2:#474B4F;
+	--culoare1:#6B6E70;
+  }
+
 h2 {
 	padding: 0.4rem;
 }
@@ -6,7 +15,7 @@ h2 {
 	margin: 0 auto;
 	width: 70%;
 	max-width: 700px;
-	background-color: var(--cl-light-t);
+	background-color: var;
 	box-shadow: 0px 0px 10px 5px grey;
 	padding: 0.4rem;
 }
@@ -23,11 +32,11 @@ h2 {
 }
 
 #art-produs p:nth-of-type(even) {
-	background-color: var(--culoare-roz-inchis);
+	background-color: var(--culoare6);
 }
 
 #art-produs p:nth-of-type(odd) {
-	background-color: var(--cl-marcare);
+	background-color: var(--culoare4);
 }
 
 .imag-produs {

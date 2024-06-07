@@ -112,6 +112,10 @@ body.dark {
 	box-sizing: content-box;
 }
 
+div.container-iframe a {
+	color: var(--culoare3);
+  }
+
 .taburi-iframe>a:hover {
 	box-shadow:
 		inset 0 0 0 3px var(--culoare2);
