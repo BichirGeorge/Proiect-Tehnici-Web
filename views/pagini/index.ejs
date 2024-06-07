@@ -18,10 +18,11 @@
     <p id="watermark"></p>
     <%- include("../fragmente/header.ejs") %>
     <main>
+
       <div id="grid-pagina">
         <section id="Acasa">
           <h2>Acasa</h2>
-          <%- include("../fragmente/formular-login.ejs") %>
+
           <%- locals.optiuniMeniu[1].unnest  %>
           <button type="button" class="btn btn-primary btn-lg">Stil-1-mare</button>
           <div id="text">
@@ -38,6 +39,10 @@
             variată și contactează-ne pentru a afla cum te putem ajuta să îți
             găsești mașina perfectă.
           </p>
+          <details>
+            <summary>
+              Video
+            </summary>
             <div id="container-video">
               <div id="centrare-video">
                   <div id="clip-video">
@@ -52,10 +57,15 @@
                   </div>
               </div>
           </div>
+        </details>
           <!-- <a href="#" title="mergi sus" id="link-top"
             ><div id="triunghi"></div>
             ></a
           > -->
+          <details>
+            <summary>
+              Poze masini
+            </summary>
           <img src="./resurse/imagini/Ferrari.jpg" alt="imagine ferrari" />
           <figure>
             <picture>
@@ -75,13 +85,7 @@
             </picture>
             <figcaption>Masini</figcaption>
           </figure>
-          <h3>Anunturi</h3>
-          <p>Avem o super-oferta speciala pentru tine!</p>
-          <p>
-            Cumpara acum o masina de minim <s>15000</s> <ins>10000</ins> de
-            euro, iar noi iti oferim 5% reducere
-          </p>
-          <p>Profită acum de această reducere incredibilă!</p>
+         </details>
           <details>
             <summary>
               Care sunt opțiunile de finanțare disponibile pentru achiziționarea
@@ -103,6 +107,7 @@
             </summary>
             Minim 18 ani
           </details>
+
         </section>
         <section id="Masini-in-stoc">
           <h2>Masini in stoc</h2>
@@ -163,6 +168,15 @@
         </section>
         <section id="Vinde-ti-masina">
           <h2>Vinde-ti masina</h2>
+          <p>
+            Pentru a vinde mașina ta la cel mai bun preț, contactează-ne pentru o evaluare gratuită și pentru a afla cum te putem ajuta să îți găsești un cumpărător potențial. Oferim servicii de promovare și consiliere pentru vânzarea mașinii tale.
+          </p>
+          <p>
+            Documentele necesare pentru vânzare includ actele de identitate, certificatul de înmatriculare și orice alte documente relevante.
+          </p>
+          <p>
+            Pentru a programa o întâlnire pentru evaluarea mașinii tale, te rugăm să ne contactezi la numărul de telefon sau prin email.
+          </p>
         </section>
         <section id="Finantare">
           <h2>Finantare</h2>
@@ -213,90 +227,89 @@
           </p>
         </section>
         <!-- ------------------------------------ -->
-        <section id="Tabel">
-          <div id="container-tab-orar">
-            <table id="tab-orar">
-              <caption style="caption-side: bottom">
-                Ore de lucru
-              </caption>
-              <thead>
-                <tr>
-                  <th>Cod</th>
-                  <th>Perioadă</th>
-                  <th>Zi</th>
-                  <th>Interval dimineata</th>
-                  <th>Pauza de masa</th>
-                  <th>Interval seară</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td rowspan="5">Zile<br />Lucrătoare</td>
-                  <td>Luni</td>
-                  <td>10-12</td>
-                  <td>12-14</td>
-                  <td>14-20</td>
-                </tr>
-                <tr>
-                  <td></td>
+          <section id="Tabel">
+            <div id="container-tab-orar">
+              <table id="tab-orar">
+                <caption style="caption-side: bottom">
+                  Program de lucru al magazinului auto
+                </caption>
+                <thead>
+                  <tr>
+                    <th>Cod</th>
+                    <th>Perioadă</th>
+                    <th>Zi</th>
+                    <th>Interval dimineata</th>
+                    <th>Pauza de masa</th>
+                    <th>Interval seară</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td rowspan="5">Zile<br />Lucrătoare</td>
+                    <td>Luni</td>
+                    <td>10-12</td>
+                    <td>12-14</td>
+                    <td>14-20</td>
+                  </tr>
+                  <tr>
+                    <td></td>
 
-                  <td>Marti</td>
-                  <td>9-12</td>
-                  <td>12-14</td>
-                  <td>14-21</td>
-                </tr>
-                <tr>
-                  <td></td>
+                    <td>Marti</td>
+                    <td>9-12</td>
+                    <td>12-14</td>
+                    <td>14-21</td>
+                  </tr>
+                  <tr>
+                    <td></td>
 
-                  <td>Miercuri</td>
-                  <td>9-11</td>
-                  <td>11-13</td>
-                  <td>14-21</td>
-                </tr>
-                <tr>
-                  <td></td>
+                    <td>Miercuri</td>
+                    <td>9-11</td>
+                    <td>11-13</td>
+                    <td>14-21</td>
+                  </tr>
+                  <tr>
+                    <td></td>
 
-                  <td>Joi</td>
-                  <td>9-11</td>
-                  <td>11-13</td>
-                  <td>14-21</td>
-                </tr>
-                <tr>
-                  <td></td>
+                    <td>Joi</td>
+                    <td>9-11</td>
+                    <td>11-13</td>
+                    <td>14-21</td>
+                  </tr>
+                  <tr>
+                    <td></td>
 
-                  <td>Vineri</td>
-                  <td>9-12</td>
-                  <td>12-14</td>
-                  <td>14-19</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td rowspan="2">Weekend</td>
-                  <td>Sambata</td>
-                  <td>10-12</td>
-                  <td>12-13</td>
-                  <td>13-16</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Duminica</td>
-                  <td>10-14</td>
-                  <td>-</td>
-                  <td>inchis</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="6">
-                    Închis cu ocazia sărbătorilor legale sau când ne e mai lene
-                    așa.
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </section>
+                    <td>Vineri</td>
+                    <td>9-12</td>
+                    <td>12-14</td>
+                    <td>14-19</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td rowspan="2">Weekend</td>
+                    <td>Sambata</td>
+                    <td>10-12</td>
+                    <td>12-13</td>
+                    <td>13-16</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>Duminica</td>
+                    <td>10-14</td>
+                    <td>-</td>
+                    <td>inchis</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="6">
+                      Închis în timpul sărbătorilor legale.
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
         <section id="Calendar">
           <p>
             <div class="container-calendar">
@@ -344,6 +357,13 @@
         </section>
         <section id="Site">
           <p>
+          <h3>Anunturi</h3>
+          <p>Avem o super-oferta speciala pentru tine!</p>
+          <p>
+            Cumpara acum o masina de minim <s>15000</s> <ins>10000</ins> de
+            euro, iar noi iti oferim 5% reducere
+          </p>
+          <p>Profită acum de această reducere incredibilă!</p>
           </p>
         </section>
 

@@ -1,29 +1,29 @@
 #Acasa {
-    grid-area: zona1;
-    position: relative;
+	grid-area: zona1;
+	position: relative;
 }
 
 #Acasa hr {
-    height: 5px;
-    background: var(--culoare4);
-    border-color: transparent;
-    opacity: 1;
+	height: 5px;
+	background: var(--culoare4);
+	border-color: transparent;
+	opacity: 1;
 }
 
 #Acasa hr:before {
-    color: var(--culoare4);
-    content: "►";
-    position: absolute;
-    font-size: 2em;
-    left: 0%;
-    transform: translateY(-47.5%);
+	color: var(--culoare4);
+	content: "►";
+	position: absolute;
+	font-size: 2em;
+	left: 0%;
+	transform: translateY(-47.5%);
 }
 
 #Acasa hr:after {
-    color: var(--culoare4);
-    content: "◄";
-    position: absolute;
-    font-size: 2em;
-    right: 0%;
-    transform: translateY(-47.5%);
+	color: var(--culoare4);
+	content: "◄";
+	position: absolute;
+	font-size: 2em;
+	right: 0%;
+	transform: translateY(-47.5%);
 }

@@ -6,11 +6,12 @@ html {
 body {
   background-color: var(--culoare2);
   color: white;
-  --culoare5: #61892F;
-  --culoare4: #86C232;
-  --culoare3: #222629;
-  --culoare2: #474B4F;
-  --culoare1: #6B6E70;
+  --culoare6:#ffa500;
+  --culoare5:#61892F;
+  --culoare4:#86C232;
+  --culoare3:#222629;
+  --culoare2:#474B4F;
+  --culoare1:#6B6E70;
   --spatiere: 50px;
   padding-left: var(--spatiere);
   padding-right: var(--spatiere);
@@ -18,12 +19,21 @@ body {
 }
 
 p {
-  color: red;
-  border: 2px solid var(--culoare1);
+  /* color: green; */
+  border: 2px solid var(--culoare5  );
+  border-radius: 5px;
 }
 
 h2 {
-  background-color: var(--culoare1);
+  background-color: var(--culoare5);
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+h3 {
+  background-color: var(--culoare4);
+  text-align: center;
+  border-radius: 5px;
 }
 
 #Formula h3 {
@@ -42,7 +52,9 @@ h2 {
 #Formula math mo {
   color: purple;
 }
-
+#Formula {
+  width: 100%;
+}
 #header {
   background-color: var(--culoare4);
   border: 2px solid black;
@@ -239,14 +251,14 @@ a[href^="http"]:hover:before {
 
 footer a {
   background-image: radial-gradient(ellipse at center,
-      var(--culoare3) 0%,
-      var(--culoare3) 40%,
+      var(--culoare6) 0%,
+      var(--culoare6) 40%,
       transparent 80%,
       transparent 100%);
   background-position: center;
   background-size: 0%;
   background-repeat: no-repeat;
-  transition: background-size 0.5s linear;
+  transition: 0.5s linear;
 }
 
 footer a:hover {
@@ -254,5 +266,39 @@ footer a:hover {
 }
 
 footer a:active {
-  border: 1px solid var(--culoare3);
+  border: 1px solid var(--culoare6);
+  transition: none;
+}
+
+summary {
+  color: var(--culoare5);
+  content: "+";
+}
+
+summary:hover {
+  content: "-";
+  color: var(--culoare4); 
+  
+}
+
+summary::before {
+  content: "+";
+  transition: font-size 0.3s ease;
+}
+
+summary:hover::before {
+  content: "-"; 
+  font-size: 1.1em;
+}
+
+a {
+  color: var(--culoare3);
+}
+
+li {
+  color: #61892F;
+}
+
+#Acasa, #Tabel, #Calendar, #Anunturi, #Utilizatori, #Statistici, #Site, #Masini-in-stoc, #Contact, #Finantare, #Vinde-ti-masina {
+  background-color: var(--culoare3);
 }

@@ -1,4 +1,3 @@
-
 /**
  @typedef Drepturi
  @type {Object}
@@ -12,7 +11,6 @@
  @property {Symbol} gestionareUtilizatori Dreptul de a edita utlizatori
  */
 
-
 /**
  * @name module.exports.Drepturi
  * @type Drepturi
@@ -23,8 +21,9 @@ const Drepturi = {
 	cumparareProduse: Symbol("cumparareProduse"),
 	vizualizareGrafice: Symbol("vizualizareGrafice"),
 	gestionareComenzi: Symbol("gestionareComenzi"),
-    gestionareProduse: Symbol("gestionareProduse"),
-    gestionareUtilizatori: Symbol("gestionareUtilizatori")
-}
-
-module.exports=Drepturi;
+	gestionareProduse: Symbol("gestionareProduse"),
+	gestionareUtilizatori: Symbol("gestionareUtilizatori"),
+  };
+  
+  module.exports = Drepturi;
+  

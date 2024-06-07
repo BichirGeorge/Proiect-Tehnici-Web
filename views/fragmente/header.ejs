@@ -36,7 +36,13 @@
             <li><a href="/index#Tabel">Program</a></li>
           </ul>
         </li>
+        <% if(!locals.utilizator) { %>
+        <li><a href="/login">Login</a></li>
+        <% }  %>
+        <% if(!locals.utilizator) { %>
         <li><a href="/inregistrare">Inregistrare</a></li>
+        <% }  %>
+        
         <li>
           <div>Despre</div>
           <ul>

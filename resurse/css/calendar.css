@@ -1,17 +1,27 @@
-#calendar{
-    display:grid;
-    grid-template-columns: repeat(7,1fr);
-    grid-gap:0.2rem;
-    color:white;
-}
-#calendar div:nth-child(n+8).zi{
-    border:1px solid black;
-}
-
-#calendar div:nth-child(n+8).eveniment{
-    background-color: red;
+body {
+	--culoare6: #ffa500;
+	--culoare5: #61892F;
+	--culoare4: #86C232;
+	--culoare3: #222629;
+	--culoare2: #474B4F;
+	--culoare1: #6B6E70;
 }
 
-.container-calendar{
-    width:200px;
+#calendar {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-gap: 0.2rem;
+	color: white;
+}
+
+#calendar div:nth-child(n+8).zi {
+	border: 1px solid black;
+}
+
+#calendar div:nth-child(n+8).eveniment {
+	background-color: var(--culoare6);
+}
+
+.container-calendar {
+	width: 200px;
 }
