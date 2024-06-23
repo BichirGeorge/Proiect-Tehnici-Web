@@ -18,10 +18,19 @@ window.addEventListener("load", function(){
         document.getElementById("infoRange").innerHTML=`(${this.value})`
     }
 
+    function remDiacritice(text) {
+        const diacritice = "ăîâșț".split("");
+        const rezultat = "aiast".split("");
+        text = text.toLocaleLowerCase("ro-RO").trim();
+        diacritice.forEach((_, i) => {
+            text = text.replaceAll(diacritice[i], rezultat[i]);
+        });
+        return text;
+    }
 
     // document.getElementById("filtrare").addEventListener("click", function(){ })
     document.getElementById("filtrare").onclick= function(){
-        var inpNume= document.getElementById("inp-nume").value.toLowerCase().trim();
+        var inpNume= remDiacritice(document.getElementById("inp-nume").value.trim().toLowerCase());
         if (inpNume === "") {
             alert("Va rugam sa introduceti un nume.");
             return;
@@ -56,7 +65,7 @@ window.addEventListener("load", function(){
         var produse=document.getElementsByClassName("produs");
         for (let produs of produse){
 
-            let valNume = produs.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase().trim()
+            let valNume = remDiacritice(produs.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase());
 
             let cond1= valNume.startsWith(inpNume)
 
@@ -170,3 +179,11 @@ window.addEventListener("load", function(){
     }
 
 })
+
+//De implementat:
+// Produsele se vor afișa fie cu ajutorul unui grid, fie folosind flexbox(este facut)
+
+// Inputul de tip text va fi pentru caracteristica care poate sa aiba mai multe valori pentru o entitate. Inputul de tip text poate conține doar un subșir din valoare. Se vor selecta toate produsele care au macar o valoare (pentru acea caracteristică) care să conțină subșirul din input.
+// Se va face un grup de checkbox pentru subcategorie (categoria de mai mică importanță). Se vor afișa produsele care au drept subcategorie valoarea selectată din minim unul dintre checkboxuri. Implicit vor fi bifate toate checkboxurile, ca să se afișeze toate produsele.
+// selectul multiplu va avea eticheta "Selectați valorile pe care NU le doriți" și va fi dedicat caracteristicii care poate sa aiba mai multe valori. Se vor afișa dor produsele pentru care niciuna dintre valori nu corespunde vreuneia selectate în obiectul select.
+// Pentru filtrele/inputurile pentru care nu s-a precizat cum anume să fie implementate în pagină, alegeți voi pentru ce caracteristici să se aplice și în ce manieră. Nu e voie să aveți două filtre pentru aceeași proprietate a produsului.

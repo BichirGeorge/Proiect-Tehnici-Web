@@ -15,7 +15,13 @@
     <main>
     <div class="row">
         <div class="col-12">
-        <label> Nume: <input type="text" id="inp-nume"></label>
+        <label> Nume:</label>
+        <input list="nume-lista" id="inp-nume">
+        <datalist id="nume-lista">
+            <% for (let prod of locals.produse) { %>
+                <option value="<%- prod.nume %>"><%- prod.nume %> </option>
+                <% } %>
+        </datalist>
         </div>
     </div>
         <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
@@ -45,7 +51,7 @@
 
         <div class="col-3">
         <label>Select simplu:
-             <select id="inp-firma"> <!-- aici trebuia modificat din categorie in tip? -->
+             <select id="inp-firma">
                 <option id="sel-toate" selected value="toate">toate</option>
                 <% for (let opt of locals.optiuni) { %>
                     <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
@@ -90,6 +96,7 @@
                 <% for( let prod of locals.produse) { %>
                     <article class="produs" >
                         <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                        
                         <div class="info-prod">
                             <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
                             <p class="kilometraj">Kilometraj: <span class="val-kilometraj"><%- prod.kilometraj%></span></p>

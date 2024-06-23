@@ -2,7 +2,7 @@
 <!-- Comentariu -->
 <html lang="ro">
   <head>
-    <%- include("../fragmente/head.ejs") %>
+    <%- include("../fragmente/head.ejs") %>  <!-- Serverul primeste cu include -->
     <title>AutoHaHaHa</title>
     <meta
       name="keywords"
@@ -325,7 +325,7 @@
 
                 <% var d = new Date(); 
                 var oraCurenta = d.getHours(); %> 
-             <% for (let imag of locals.imagini) { %> 
+             <% for (let imag of locals.imagini) { %>   <!-- Iau o imagine din obiectul trimis in render -->
                <% if ((oraCurenta >= 5 && oraCurenta < 12 && imag.timp === "dimineata") || 
                        (oraCurenta >= 12 && oraCurenta < 20 && imag.timp === "zi") || 
                        (oraCurenta >= 20 || oraCurenta < 5 && imag.timp === "noapte")) { %>

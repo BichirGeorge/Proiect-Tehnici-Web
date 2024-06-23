@@ -51,7 +51,7 @@ client.query(
 obGlobal = {
   obErori: null,
   obImagini: null,
-  folderCss: path.join(__dirname, "resurse/css"),
+  folderCss: path.join(__dirname, "resurse/css"),   //
   folderScss: path.join(__dirname, "resurse/scss"),
   folderBackup: path.join(__dirname, "backup"),
   optiuniMeniu: [], // aici nush sigur daca trebuie o proprietate
@@ -162,7 +162,7 @@ function getIp(req) {
 app.all("/*", function (req, res, next) {
   let ipReq = getIp(req);
   if (ipReq) {
-    var id_utiliz = req?.session?.utilizator?.id;
+    var id_utiliz = req?.session?.utilizator?.id; //exista proprietatea session, si daca exista prop. session exista proprietea utilizator ..?
     //id_utiliz = id_utiliz ? id_utiliz : null;
     //console.log("id_utiliz", id_utiliz);
     // TO DO comanda insert (folosind AccesBD) cu  ip, user_id, pagina(url  din request)
@@ -264,7 +264,7 @@ function genereazaEvenimente() {
   var texteEvenimente = [
     "Eveniment important",
     "Festivitate",
-    "Prajituri gratis",
+    "Benzina gratis",
     "Zi cu soare",
     "Aniversare",
   ];
@@ -288,11 +288,11 @@ function genereazaEvenimente() {
  * @param {Object} res - Obiectul response.
  */
 
-//8
+//8  //render face pagina
 app.get(["/", "/index", "/home"], async function (req, res) {
   res.render("pagini/index.ejs", {
     ip: req.ip,
-    imagini: obGlobal.obImagini.imagini,
+    imagini: obGlobal.obImagini.imagini, // trimit vectorul de imagine in index.ejs
     useriOnline: await obtineUtilizatoriOnline(),
     locatie: await obtineLocatie(),
     evenimente: genereazaEvenimente(),
@@ -779,7 +779,7 @@ function creeazaXMlContactDacaNuExista() {
         },
       ],
     };
-    let sirXml = xmljs.js2xml(initXML, { compact: false, spaces: 4 }); //obtin sirul xml (cu taguri)
+    let sirXml = xmljs.js2xml(initXML, { compact: false, spaces: 4 }); //obtin sirul xml  
     console.log(sirXml);
     fs.writeFileSync(caleXMLMesaje, sirXml);
     return false; //l-a creat
@@ -1048,39 +1048,29 @@ function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
 
 // Functia care initializeaza imaginile din fisierul JSON de galerie
 function initImagini() {
-  // Citim continutul fisierului JSON de galerie
-  var continut = fs
-    .readFileSync(__dirname + "/resurse/json/galerie.json")
-    .toString("utf-8");
-  // Parsam continutul JSON si il salvam in obiectul global obImagini
-  obGlobal.obImagini = JSON.parse(continut);
+  // citim continutul fisierului JSON de galerie
+  var continut = fs.readFileSync(__dirname + "/resurse/json/galerie.json").toString("utf-8");  // pentru diacritice, etc
+  // parsam continutul JSON si il salvam in obiectul global obImagini
+  obGlobal.obImagini = JSON.parse(continut);  //JSON.parse transforma in obiect
   let vImagini = obGlobal.obImagini.imagini;
-  // Calculam calea absoluta catre directorul de imagini si directorul de imagini medii
+  // calculam calea absoluta catre directorul de imagini si directorul de imagini medii
   let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
-  let caleAbsMediu = path.join(
-    __dirname,
-    obGlobal.obImagini.cale_galerie,
-    "mediu",
+  let caleAbsMediu = path.join(__dirname,obGlobal.obImagini.cale_galerie,"mediu",
   );
-  // Cream directorul de imagini medii daca nu exista
+  // cream directorul de imagini medii daca nu exista
   if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
 
   // Iteram prin fiecare imagine din lista de imagini
   //for (let i=0; i< vErori.length; i++ )
   for (let imag of vImagini) {
-    // Extragem numele fisierului si extensia imaginii
-    [numeFis, ext] = imag.fisier.split(".");
-    // Calculam calea absoluta catre fisierul original si calea absoluta catre fisierul de imagine medie
+    [numeFis, ext] = imag.fisier.split(".");     //imparte lamborghini.png in lamborghini si png
+    // calculam calea absoluta catre fisierul original si calea absoluta catre fisierul de imagine medie
     let caleFisAbs = path.join(caleAbs, imag.fisier);
-    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
-    // Redimensionam imaginea originala si o salvam ca imagine medie
-    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-    // Actualizam calea catre fisierul de imagine medie si calea catre fisierul original in obiectul imaginii
-    imag.fisier_mediu = path.join(
-      "/",
-      obGlobal.obImagini.cale_galerie,
-      "mediu",
-      numeFis + ".webp",
+    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");  //schimb din extensia din png in webp
+    // redimensionam imaginea originala si o salvam ca imagine medie
+    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);  //pastreaza aspect ratio
+    // actualizam calea catre fisierul de imagine medie si calea catre fisierul original in obiectul imaginii
+    imag.fisier_mediu = path.join("/",obGlobal.obImagini.cale_galerie,"mediu",numeFis + ".webp",
     );
     imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
   }
@@ -1089,63 +1079,58 @@ initImagini();
 
 /**
  * Functia compileazaScss compileaza un fisier .scss in fisier .css folosind biblioteca sass
- * @param {string} caleScss - Calea fisierului .scss de intrare
- * @param {string} caleCss - Calea fisierului .css de iesire (optional, daca nu este furnizat, se va genera un nume de fisier .css pe baza numelui fisierului .scss de intrare)
+ * @param {string} caleScss - Calea fisierului .scss de intrare , calea catre fisierul de compilat
+ * @param {string} caleCss - Calea fisierului .css de ouput (daca nu este furnizat, se va genera un nume de fisier .css pe baza numelui fisierului .scss de intrare)
  * @returns {void} - Nu returneaza nimic, dar genereaza un fisier .css la calea specificata
  */
 function compileazaScss(caleScss, caleCss) {
   console.log("cale:", caleCss);
   if (!caleCss) {
-    let numeFisExt = path.basename(caleScss);
-    let numeFis = numeFisExt.split(".")[0]; /// "a.scss"  -> ["a","scss"]
-    caleCss = numeFis + ".css";
+    let numeFisExt = path.basename(caleScss);  //path.basename - numele fisierul din cale cu tot cu extensie / de ex galerie.json / numele fisierului fara restul caii
+    let numeFis = numeFisExt.split(".")[0]; /// "a.scss"  -> ["a","scss"]  // imi da numele fisierul fara extensie, de asta e 0, adica primul
+    caleCss = numeFis + ".css";  // scot scss mai sus si pun css
   }
 
-  if (!path.isAbsolute(caleScss))
-    caleScss = path.join(obGlobal.folderScss, caleScss);
-  if (!path.isAbsolute(caleCss))
+  if (!path.isAbsolute(caleScss))  // daca nu este absoluta(adica C:\Users\geoge\Desktop\Proiect Tehnici Web\index.js)
+    caleScss = path.join(obGlobal.folderScss, caleScss);  // atunci il concatenez la folderul de scss
+  if (!path.isAbsolute(caleCss)) // ...
     caleCss = path.join(obGlobal.folderCss, caleCss);
 
-  let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
-  if (!fs.existsSync(caleBackup)) {
-    fs.mkdirSync(caleBackup, { recursive: true });
+  let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");  // cream calea de backup pentru css 
+  if (!fs.existsSync(caleBackup)) {    //daca nu exista caleBackup o cream
+    fs.mkdirSync(caleBackup, { recursive: true });  //recursive true: creaza recursiv toate subfolderele
   }
 
   // la acest punct avem cai absolute in caleScss si  caleCss
   //TO DO
-  let numeFisCss = path.basename(caleCss);
-  if (fs.existsSync(caleCss)) {
+  let numeFisCss = path.basename(caleCss);   //path.basename - numele fisierul din cale cu tot cu extensie
+  if (fs.existsSync(caleCss)) { // daca exista acest fisier, atunci il copiaza
     fs.copyFileSync(
       caleCss,
       path.join(obGlobal.folderBackup, "resurse/css", numeFisCss),
     ); // +(new Date()).getTime()
   }
-  rez = sass.compile(caleScss, { sourceMap: true });
-  fs.writeFileSync(caleCss, rez.css);
+  rez = sass.compile(caleScss, { sourceMap: true });  // compileaza ce se afla la caleScss in css
+  fs.writeFileSync(caleCss, rez.css);   //resultatul in css il scrie in caleCss
   //console.log("Compilare SCSS",rez);
 }
 // Itereaza prin fisierele din folderul de scss si compileaza fiecare fisier .scss gasit
-vFisiere = fs.readdirSync(obGlobal.folderScss);
-for (let numeFis of vFisiere) {
+vFisiere = fs.readdirSync(obGlobal.folderScss); // citeste toate fisierele din folderScss si le pune in vFisiere
+for (let numeFis of vFisiere) {   // pentru fiecare fiser verific extensia si daca este scss inseamna ca pot sa il compilez
   if (path.extname(numeFis) == ".scss") {
     compileazaScss(numeFis);
   }
 }
 
-/**
- * Aici se foloseste metoda fs.watch pentru a urmari schimbarile in folderul obGlobal.folderScss.
- * Cand se detecteaza un eveniment de "change" sau "rename", se compileaza fisierul .scss corespunzator.
- */
-
-fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
+fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {    //verifica in timp real daca s-a modificat fisierul, iar atunci cand se modifica un fisier executa functia de mai jos
   console.log(eveniment, numeFis);
-  if (eveniment == "change" || eveniment == "rename") {
-    let caleCompleta = path.join(obGlobal.folderScss, numeFis);
-    if (fs.existsSync(caleCompleta)) {
-      compileazaScss(caleCompleta);
+  if (eveniment == "change" || eveniment == "rename") { // daca a fost schimbat sau redenumit
+    let caleCompleta = path.join(obGlobal.folderScss, numeFis); // concatem calea fisierelor scss cu numele fisierului fisierul care a fost modificat
+    if (fs.existsSync(caleCompleta)) { // daca calea exista
+      compileazaScss(caleCompleta); // atunci il compilez
     }
   }
 });
-//Se porneste serverul pe portul 8080 si se afiseaza un mesaj de confirmare in consola.
+//Se porneste serverul pe portul 8080 si se afiseaza un mesaj de confirmare in consola. // primeste cereri de pe acest port
 app.listen(8080);
 console.log("Serverul a pornit");
